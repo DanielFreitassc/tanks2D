@@ -27,10 +27,16 @@ public class Enemy1 {
     }
     public void update() {
         this.x -= VELOCIDADE;
-       // if (this.x > LARGURA) {
-        //    isVisivel = false;
-        //}
+        System.out.println("Posição do inimigo: x=" + this.x + ", y=" + this.y);
+    
+        if (this.x + largura < 0) {
+            
+            this.x = 1024; 
+        }
+        
     }
+    
+    
 
     public Rectangle getBounds() {
         return new Rectangle(x,y,largura,altura);

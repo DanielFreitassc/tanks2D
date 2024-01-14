@@ -42,7 +42,7 @@ public class Fase extends JPanel implements ActionListener{
         addKeyListener(new TecladoAdapter());
     }
     public void inicializaInimigos() {
-        int cordenadas[] = new int[40];
+        int cordenadas[] = new int[10];
         enemy1 = new ArrayList<Enemy1>();
 
         for (int i = 0; i < cordenadas.length; i++) {

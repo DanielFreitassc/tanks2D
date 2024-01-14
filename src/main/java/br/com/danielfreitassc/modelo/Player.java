@@ -15,6 +15,9 @@ public class Player {
     private int altura, largura;
     private List <Tiro> tiros;
     private boolean isVisivel;
+    private Image imagemAtirando;
+    private boolean atirando;
+
     public Player(){
         this.x = 100;
         this.y = 100;
@@ -27,19 +30,30 @@ public class Player {
         var referencia = new ImageIcon(getClass().getResource("../res/tank.png"));
         imagem = referencia.getImage();
 
+        var referenciaAtirando = new ImageIcon(getClass().getResource("../res/tankatirando.png"));
+        imagemAtirando = referenciaAtirando.getImage();
+
         altura = imagem.getHeight(null);
         largura = imagem.getWidth(null);
     }
+
     public void update(){
         x += dx;
         y += dy;
     }
+
     public void tiroSimples(){
         this.tiros.add(new Tiro(x+largura -10, y + (altura -69)));
+        atirando = true;
     }
+    public void fimTiro() {
+        atirando = false;
+    }
+    
     public Rectangle getBounds() {
         return new Rectangle(x,y,largura,altura);
     }
+
     public void keyPressed(KeyEvent tecla){
         int codigo = tecla.getKeyCode();
         if (codigo == KeyEvent.VK_A) {
@@ -74,6 +88,9 @@ public class Player {
         if (codigo == KeyEvent.VK_RIGHT) {
             dx=0;
         }
+        if (codigo == KeyEvent.VK_A) {
+            fimTiro(); 
+        }
     }
     public boolean isVisivel(){
         return isVisivel;
@@ -88,7 +105,13 @@ public class Player {
         return y;
     }
     public Image getImagem() {
-        return imagem;
+        if (atirando) {
+           
+            return imagemAtirando;
+        } else {
+            
+            return imagem;
+        }
     }
     public List<Tiro> getTiros() {
         return tiros;
