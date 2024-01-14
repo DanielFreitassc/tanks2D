@@ -12,7 +12,7 @@ public class Tiro {
     private int largura, altura;
     private boolean isVisivel;
     private static final int LARGURA = 1980;
-    private static int VELOCIDADE = 30;
+    private static int VELOCIDADE = 20;
 
     public Tiro(int x, int y) {
         this.x = x;

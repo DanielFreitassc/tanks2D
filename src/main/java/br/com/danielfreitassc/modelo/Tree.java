@@ -11,7 +11,7 @@ public class Tree {
     private int largura, altura;
     private boolean isVisivel;
   //private static final int LARGURA = 1980;
-    private static int VELOCIDADE = 2;
+    private static int VELOCIDADE = 1;
 
     public Tree(int x, int y) {
         this.x = x;
@@ -27,13 +27,13 @@ public class Tree {
         this.altura = image.getHeight(null);
     }
     public void update() {
-        if(this.x < 0) {
+        if(this.x < -1000) {
             this.x = largura;
             Random a = new Random();
             int m = a.nextInt(500);
             this.x = m + 1024;
             Random r = new Random();
-            int n = r.nextInt(768);
+            int n = r.nextInt(500);
             this.y = n;
         } else{
             this.x -= VELOCIDADE;

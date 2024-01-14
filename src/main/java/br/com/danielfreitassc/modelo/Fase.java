@@ -21,11 +21,14 @@ public class Fase extends JPanel implements ActionListener{
     private List<Enemy1> enemy1;
     private List<Tree> tree;
     private boolean emJogo;
+    private int posicaoFundoX = 0;
+    private int larguraTela;
 
     public Fase(){
         setFocusable(true);
         setDoubleBuffered(true);
-
+        // Adicione esta linha para obter a largura da tela
+        larguraTela = 980;  // Largura da sua tela
         var referencia = new ImageIcon(getClass().getResource("../res/background.png"));
         fundo = referencia.getImage();
         player = new Player();
@@ -49,7 +52,7 @@ public class Fase extends JPanel implements ActionListener{
         }
     }
     public void inicializaTree() {
-        int cordenadas[] = new int[2];
+        int cordenadas[] = new int[10];
         tree = new ArrayList<Tree>();
         for (int i = 0; i < cordenadas.length; i++) {
             int x = (int)(Math.random() * 1050+1024);
@@ -60,7 +63,8 @@ public class Fase extends JPanel implements ActionListener{
     public void paint(Graphics g){
         Graphics2D graficos = (Graphics2D) g;
         if(emJogo == true) {
-            graficos.drawImage(fundo, 0, 0,null);
+            graficos.drawImage(fundo, -posicaoFundoX, 0, null);
+
 
            
             graficos.drawImage(player.getImagem(), player.getX(), player.getY(), this);
@@ -117,6 +121,16 @@ public class Fase extends JPanel implements ActionListener{
                 enemy1.remove(o);
             }
         }
+         // Atualiza a posição do fundo para criar o efeito de movimento
+    posicaoFundoX += 5;  // ou qualquer valor que você achar adequado
+
+    // Reinicia a posição do fundo quando atinge o limite
+    if (posicaoFundoX >= larguraTela) {
+        posicaoFundoX = 0;
+    }
+
+
+
         checarColisoes();
         repaint();
     }

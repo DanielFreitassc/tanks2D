@@ -35,7 +35,7 @@ public class Player {
         y += dy;
     }
     public void tiroSimples(){
-        this.tiros.add(new Tiro(x+largura -40, y + (altura -73)));
+        this.tiros.add(new Tiro(x+largura -10, y + (altura -69)));
     }
     public Rectangle getBounds() {
         return new Rectangle(x,y,largura,altura);
